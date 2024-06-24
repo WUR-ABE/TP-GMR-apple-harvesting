@@ -1,0 +1,8 @@
+numpy
+scipy
+matplotlib
+sklearn
+dtw
+jupyter
+enum
+termcolor
