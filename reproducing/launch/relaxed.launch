@@ -1,0 +1,13 @@
+<launch>
+  <include file="$(find relaxed_ik)/launch/load_info_file.launch" />
+
+  <node pkg="robotiq_2f_gripper_control" type="Robotiq2FGripperRtuNode.py" name="gripper_control" output="screen">
+    <param name="port" value="/dev/ttyUSB0" />
+  </node>
+
+  <node pkg="utility_functions" type="follow_listener.py" name="follow_listener" output="screen"/>
+
+  <node pkg="relaxed_ik" type="relaxed_ik_node.py" name="relaxed_ik_node" output="screen"/>
+
+</launch>
+

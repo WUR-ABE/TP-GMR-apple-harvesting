@@ -1,0 +1,123 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://wiki.ros.org/xacro"
+       name="ur3_husky" >
+
+  <xacro:arg name="transmission_hw_interface" default="hardware_interface/PositionJointInterface"/>
+
+  <!-- common stuff -->
+  <xacro:include filename="$(find ur_description)/urdf/common.gazebo.xacro" />
+
+  <!-- ur3 -->
+  <xacro:include filename="$(find ur3_husky_description)/config/ur3.urdf.xacro" />
+
+  <!-- arm -->
+  <xacro:ur3_robot prefix="" joint_limited="true"
+    shoulder_pan_lower_limit="${-pi}" shoulder_pan_upper_limit="${pi}"
+    shoulder_lift_lower_limit="${-1.5*pi}" shoulder_lift_upper_limit="${0.5*pi}"
+    elbow_joint_lower_limit="${-pi}" elbow_joint_upper_limit="${pi}"
+    wrist_1_lower_limit="${-2*pi}" wrist_1_upper_limit="${0}"
+    wrist_2_lower_limit="${-1.5*pi}" wrist_2_upper_limit="${0.5*pi}"
+    wrist_3_lower_limit="${-pi}" wrist_3_upper_limit="${pi}"
+    transmission_hw_interface="$(arg transmission_hw_interface)"
+  />
+
+  
+  <link name="world" />
+
+  <joint name="world_joint" type="fixed">
+    <parent link="world" />
+    <child link = "base_link" />
+    <origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0" />
+  </joint>
+
+  
+  <!--lower box -->  
+  <link name="lower_box_link">
+   <collision name="collision">
+     <origin rpy="0 0 0" xyz="-0.333 0 -0.175"/>
+       <geometry>
+    <box size="0.83 0.62 0.350"/>    
+       </geometry>
+   </collision>
+   
+   <visual name="visual">
+    <origin rpy="0 0 0" xyz="-0.333 0 -0.175"/>
+       <geometry>
+    <box size="0.83 0.62 0.350"/> 
+       </geometry>
+       <material name="yellow">
+        <color rgba="0.8 0.6 0 1"/>
+       </material>
+   </visual>
+   </link>
+
+  <joint name="lower_box_joint" type="fixed">
+    <parent link="world" />
+    <child link = "lower_box_link" />
+    <origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0" />
+  </joint>
+
+  <!--upper box -->  
+  <link name="upper_box_link">
+   <collision name="collision">
+    <origin rpy="0 0 0" xyz="-0.618 0 0.195"/>
+       <geometry>
+    <box size="0.26 0.48 0.39"/>    
+       </geometry>
+   </collision>
+   
+   <visual name="visual">
+     <origin rpy="0 0 0" xyz="-0.618 0 0.195"/>
+       <geometry>
+    <box size="0.26 0.48 0.39"/>    
+       </geometry>
+       <material name="yellow">
+        <color rgba="0.8 0.6 0 1"/>
+       </material>
+   </visual>
+   </link>
+
+  <joint name="upper_box_joint" type="fixed">
+    <parent link="world" />
+    <child link = "upper_box_link" />
+    <origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0" />
+  </joint>
+
+<!--lower plane -->  
+  <link name="lower_plane_link">
+   <collision name="collision">
+     <origin rpy="0 0 0" xyz="-0.4 0 -0.175"/>
+       <geometry>
+    <box size="1.5 1.5 0.01"/>    
+       </geometry>
+   </collision>
+   
+   <visual name="visual">
+     <origin rpy="0 0 0" xyz="0 0 -0.175"/>
+       <geometry>
+    <box size="1.5 1.5 0.01"/>    
+       </geometry>
+       <material name="yellow">
+        <color rgba="0.8 0.6 0 1"/>
+       </material>
+   </visual>
+   </link>
+
+  <joint name="lower_plane_joint" type="fixed">
+    <parent link="lower_box_link"/>
+    <child link = "lower_plane_link" />
+    <origin xyz="0.0 0.0 -0.175" rpy="0.0 0.0 0.0" />
+  </joint>
+  
+  <!-- robotiq gripper installed on the arm -->
+  <xacro:include filename="$(find robotiq_2f_140_gripper_visualization)/urdf/robotiq_arg2f_140_model_macro.xacro" />
+  <xacro:robotiq_arg2f_140 prefix=""/>
+
+  <joint name="tool_joint" type="fixed">
+    <parent link="tool0" />
+    <!--parent link="wrist_3_link" /-->
+    <child link = "robotiq_arg2f_base_link" />
+    <origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 1.5705" />
+  </joint>
+
+</robot>

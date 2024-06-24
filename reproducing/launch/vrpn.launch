@@ -1,0 +1,18 @@
+<launch>
+  <!-- This file launches the vrpn client, which pulls the OptiTrack pose -->
+
+  <!--remap from="/vrpn_client_node/opti_hand/pose" to="/relaxed_ik/ee_pose_goals"/-->
+
+  <node pkg="utility_functions" type="fixed_tf_broadcaster.py"
+        name="broadcaster_fixed" />
+
+  <node pkg="vrpn_client_ros" type="vrpn_client_node" name="vrpn_client_node" output="screen">
+    <param name="refresh_tracker_frequency" value="1.0" />
+    <param name="use_server_time" value="false" />
+    <param name="broadcast_tf" value="true" />
+    <param name="server" value="192.168.10.2" />
+    <param name="port" value="3883" />
+    <param name="frame_id" value="opti_corrected" />
+  </node>
+
+</launch>

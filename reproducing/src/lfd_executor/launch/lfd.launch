@@ -1,0 +1,25 @@
+<launch>
+
+    <!-- Nodes to transform poses -->
+    <node pkg="utility_functions" type="cube_pose_tf_broadcaster.py" name="cube_pose_broadcaster" />
+    <node pkg="utility_functions" type="goal_pose_tf_broadcaster.py" name="goal_pose_broadcaster" />
+    <node pkg="utility_functions" type="relaxed_frame_broadcaster.py" name="relaxed_frame_broadcaster" />
+    <node pkg="utility_functions" type="tcp_for_ik_broadcaster.py" name="tcp_for_ik_broadcaster" />
+
+    <!-- Start the two trajectory predictors -->
+    <node pkg="lfd_executor" type="traj_predictor_gmr.py" name="traj_predictor_gmr" output="screen"/>
+    <node pkg="lfd_executor" type="traj_predictor_lqr.py" name="traj_predictor_lqr" output="screen"/>
+
+    <!-- Start the trajectory execurtor -->
+    <node pkg="lfd_executor" type="traj_executor.py" name="traj_executor" output="screen">
+        <param name="publish_rate" value="6"/>
+    </node>
+
+    <!-- Start the lfd controller -->
+    <node pkg="lfd_executor" type="lfd_controller.py" name="lfd_controller" output="screen">
+        <param name="tf_object_topic" value="cube_ik"/>
+        <param name="tf_manipulator_topic" value="tool_ik"/>
+        <param name="tf_goal_topic" value="goal_ik"/>
+    </node>
+
+</launch>

@@ -1,0 +1,5 @@
+<launch>
+  <include file="vrpn.launch" />
+  <include file="ur3.launch" />
+  <include file="relaxed.launch" />
+</launch>

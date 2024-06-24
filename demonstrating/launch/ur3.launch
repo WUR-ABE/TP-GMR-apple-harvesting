@@ -1,0 +1,15 @@
+<launch>
+    <!-- This launch file will launch the UR3 with ros control -->
+    <include file="$(find ur_robot_driver)/launch/ur3_bringup.launch">
+        <arg name="robot_ip" default="192.168.10.20" />
+        <arg name="controllers" default="joint_state_controller joint_group_pos_controller" />
+        <arg name="robot_description_file" default="$(find ur3_husky_description)/launch/description.launch" />
+        <arg name="kinematics_config" default="$(find ur3_husky_description)/config/ur3_calibration.yaml" />
+    </include>
+
+    <!-- send robot urdf to param server -->
+    <include file="$(find ur3_husky_description)/launch/planning_context.launch" />
+
+    <!-- robot model -->
+    <include file="$(find ur3_husky_description)/launch/description.launch" />
+</launch>

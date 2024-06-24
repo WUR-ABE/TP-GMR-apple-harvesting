@@ -1,0 +1,6 @@
+geometry_msgs/Pose[] trajectory_part_1
+geometry_msgs/Pose[] trajectory_part_2
+---
+bool done
+---
+geometry_msgs/PoseStamped current_target
