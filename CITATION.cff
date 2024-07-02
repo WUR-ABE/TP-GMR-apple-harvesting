@@ -1,0 +1,39 @@
+# This CITATION.cff file was generated with cffinit.
+# Visit https://bit.ly/cffinit to generate yours today!
+
+cff-version: 1.2.0
+title: >-
+  Using Learning from Demonstration (LfD) to perform the
+  complete apple harvesting task
+message: >-
+  If you use this software, please cite it using the
+  metadata from this file.
+type: software
+authors:
+  - given-names: Robert
+    family-names: van de Ven
+    affiliation: Wageningen University & Research
+    orcid: 'https://orcid.org/0009-0005-6483-6231'
+  - given-names: Ali
+    family-names: Leylavi Shoushtari
+    affiliation: Wageningen Robotics
+  - given-names: Ard T.
+    family-names: Nieuwenhuizen
+    orcid: 'https://orcid.org/0000-0002-8525-8558'
+    affiliation: Wageningen University & Research
+  - given-names: Gert
+    family-names: Kootstra
+    orcid: 'https://orcid.org/0000-0002-2579-4324'
+    affiliation: Wageningen University & Research
+  - given-names: Eldert J.
+    family-names: van Henten
+    affiliation: Wageningen University & Research
+    orcid: 'https://orcid.org/0000-0002-1623-9855'
+identifiers:
+  - type: doi
+    value: 10.1016/j.compag.2024.109195
+    description: Accompanying article
+abstract: >-
+  This repository contains the code for the paper "Using
+  Learning from Demonstration (LfD) to perform the complete
+  apple harvesting task"
