@@ -2,7 +2,7 @@
 
 > **Using Learning from Demonstration (LfD) to perform the complete apple harvesting task**\
 > Robert van de Ven, Ali Leylavi Shoushtari, Ard Nieuwenhuizen, Gert Kootstra, and Eldert J. van Henten\
-> DOI: 
+> DOI: https://doi.org/10.1016/j.compag.2024.109195
 
 ## About
 Official implementation of the paper *Using Learning from Demonstration (LfD) to perform the complete apple harvesting task*. The work is published in *Computers and Electronics in Agriculture*. 
